@@ -15,8 +15,8 @@ form label{
 .btn_enviar{
     width: 50%;
     padding: 15px 0;
-    background-color: rgb(255, 223, 42);
-    color: yellowgreen;
+    background-color: rgb(92, 85, 185);
+    color: rgb(124, 179, 241);
     font-weight: bold;
     font-size: 18px;
     border: none;
@@ -26,6 +26,6 @@ form label{
 }
 
 .btn_enviar:hover{
-    background-color: blue;
+    background-color: rgb(90, 90, 255);
     transform: scale(1,1);
 }
