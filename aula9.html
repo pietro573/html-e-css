@@ -18,10 +18,126 @@ h1{
 }
 
     </style>
+    <script>
+
+        function pesquisarCEP(){
+            const link = "https://viacep.com.br/ws/" + cop + "/json/?callback=preencherEndereco"
+            var script = document.createElement("script")
+            script.src = link
+            document.body.appendChild(script)
+
+        }
+        function preencherEndereco(){
+            alert(conteudo)
+            resposta.textContent = JSON.stringify(conteudo)
+
+            document.getElementByid('rua').value= conteudo.logradouro
+
+            document.getElementByid('cidade').value= conteudo.localidade
+
+        }
+
+    
+
+     function limpa_formulário_cep() {
+            //Limpa valores do formulário de cep.
+            document.getElementById('RUA').value="...";
+                document.getElementById('BAIRRO').value="...";
+                document.getElementById('CIDADE').value="...";
+                document.getElementById('NÚMERO').value="...";
+                document.getElementById('celular').value="...";
+                document.getElementById('nome').value="...";
+                document.getElementById('CPF').value="...";
+                document.getElementById('dt_nasc').value="...";
+                document.getElementById('email').value="...";
+                document.getElementById('ESTADO(uf)').value="...";
+                document.getElementById('senha').value="...";
+                document.getElementById('CEP').value="...";
+    }
+
+    function meu_callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('RUA').value="...";
+                document.getElementById('BAIRRO').value="...";
+                document.getElementById('CIDADE').value="...";
+                document.getElementById('NÚMERO').value="...";
+                document.getElementById('celular').value="...";
+                document.getElementById('nome').value="...";
+                document.getElementById('CPF').value="...";
+                document.getElementById('dt_nasc').value="...";
+                document.getElementById('email').value="...";
+                document.getElementById('ESTADO(uf)').value="...";
+                document.getElementById('senha').value="...";
+                document.getElementById('CEP').value="...";
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
+        }
+    }
+        
+    function pesquisacep(valor) {
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = valor.replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if(validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                document.getElementById('RUA').value="...";
+                document.getElementById('BAIRRO').value="...";
+                document.getElementById('CIDADE').value="...";
+                document.getElementById('NÚMERO').value="...";
+                document.getElementById('celular').value="...";
+                document.getElementById('nome').value="...";
+                document.getElementById('CPF').value="...";
+                document.getElementById('dt_nasc').value="...";
+                document.getElementById('email').value="...";
+                document.getElementById('ESTADO(uf)').value="...";
+                document.getElementById('senha').value="...";
+                document.getElementById('CEP').value="...";
+
+
+
+
+                //Cria um elemento javascript.
+                var script = document.createElement('script');
+
+                //Sincroniza com o callback.
+                script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+                //Insere script no documento e carrega o conteúdo.
+                document.body.appendChild(script);
+
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
+        }
+    };
+
+
+
+    </script>
 </head>
 <body>
     
-    <img src="download.jpeg" alt="download.jpeg">
+    
 
 
 <header>
