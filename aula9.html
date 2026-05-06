@@ -19,57 +19,24 @@ h1{
 
     </style>
     <script>
-
-        function pesquisarCEP(){
-            const link = "https://viacep.com.br/ws/" + cop + "/json/?callback=preencherEndereco"
-            var script = document.createElement("script")
-            script.src = link
-            document.body.appendChild(script)
-
-        }
-        function preencherEndereco(){
-            alert(conteudo)
-            resposta.textContent = JSON.stringify(conteudo)
-
-            document.getElementByid('rua').value= conteudo.logradouro
-
-            document.getElementByid('cidade').value= conteudo.localidade
-
-        }
-
     
 
      function limpa_formulário_cep() {
             //Limpa valores do formulário de cep.
-            document.getElementById('RUA').value="...";
-                document.getElementById('BAIRRO').value="...";
-                document.getElementById('CIDADE').value="...";
-                document.getElementById('NÚMERO').value="...";
-                document.getElementById('celular').value="...";
-                document.getElementById('nome').value="...";
-                document.getElementById('CPF').value="...";
-                document.getElementById('dt_nasc').value="...";
-                document.getElementById('email').value="...";
-                document.getElementById('ESTADO(uf)').value="...";
-                document.getElementById('senha').value="...";
-                document.getElementById('CEP').value="...";
+            document.getElementById('RUA').value="";
+                document.getElementById('BAIRRO').value="";
+                document.getElementById('CIDADE').value="";
+                document.getElementById('ESTADO(UF)').value="";
+                document.getElementById('CEP').value="";
     }
 
     function meu_callback(conteudo) {
         if (!("erro" in conteudo)) {
             //Atualiza os campos com os valores.
-            document.getElementById('RUA').value="...";
-                document.getElementById('BAIRRO').value="...";
-                document.getElementById('CIDADE').value="...";
-                document.getElementById('NÚMERO').value="...";
-                document.getElementById('celular').value="...";
-                document.getElementById('nome').value="...";
-                document.getElementById('CPF').value="...";
-                document.getElementById('dt_nasc').value="...";
-                document.getElementById('email').value="...";
-                document.getElementById('ESTADO(uf)').value="...";
-                document.getElementById('senha').value="...";
-                document.getElementById('CEP').value="...";
+            document.getElementById('RUA').value= conteudo.logradouro;
+                document.getElementById('BAIRRO').value= conteudo.bairro;
+                document.getElementById('CIDADE').value= conteudo.localidade;
+                document.getElementById('ESTADO(UF)').value= conteudo.uf;
         } //end if.
         else {
             //CEP não Encontrado.
@@ -93,19 +60,11 @@ h1{
             if(validacep.test(cep)) {
 
                 //Preenche os campos com "..." enquanto consulta webservice.
-                document.getElementById('RUA').value="...";
-                document.getElementById('BAIRRO').value="...";
-                document.getElementById('CIDADE').value="...";
-                document.getElementById('NÚMERO').value="...";
-                document.getElementById('celular').value="...";
-                document.getElementById('nome').value="...";
-                document.getElementById('CPF').value="...";
-                document.getElementById('dt_nasc').value="...";
-                document.getElementById('email').value="...";
-                document.getElementById('ESTADO(uf)').value="...";
-                document.getElementById('senha').value="...";
-                document.getElementById('CEP').value="...";
-
+                document.getElementById('RUA').value="";
+                document.getElementById('BAIRRO').value="";
+                document.getElementById('CIDADE').value="";
+                document.getElementById('ESTADO(UF)').value="";
+        
 
 
 
@@ -167,7 +126,7 @@ h1{
 <input type="tel" id="celular" placeholder= "(00) 0000-0000" required class="input-texto">
 
 <label for= "CEP"> CEP:</label>
-<input type="text" id="CEP" placeholder= "000-000-00" required class="input-texto">
+<input type="text" id="CEP" onblur="pesquisacep(this.value)" placeholder= "000-000-00" required class="input-texto">
 
 <label for= "RUA"> RUA:</label>
 <input type="text" id="RUA" placeholder= "alvares pedro" required class="input-texto">
